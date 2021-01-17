@@ -1,4 +1,5 @@
 var canvas, ctx, HEIGHT, WIDTH, frames = 0;
+ground = new Ground(),
 
 function main () {
     HEIGHT = window.innerHeight;
@@ -35,6 +36,7 @@ function update () {
 function draw () {
     ctx.fillStyle = "#50beff";
     ctx.fillRect(0, 0, WIDTH, HEIGHT)
+    ground.drawing();
 }
 
 function roll () {
