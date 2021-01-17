@@ -1,5 +1,6 @@
-var canvas, ctx, HEIGHT, WIDTH, frames = 0;
+var canvas, ctx, HEIGHT, WIDTH, frames = 0, maxJumps = 3,
 ground = new Ground(),
+block = new Block();
 
 function main () {
     HEIGHT = window.innerHeight;
@@ -26,17 +27,21 @@ function main () {
 main();
 
 function click (event) {
-    console.log("MOUSEDOWN", event);
+    block.jump();
 }
 
 function update () {
     frames++;
+
+    block.updateVelocity();
 }
 
 function draw () {
     ctx.fillStyle = "#50beff";
-    ctx.fillRect(0, 0, WIDTH, HEIGHT)
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
     ground.drawing();
+    block.drawing();
 }
 
 function roll () {
