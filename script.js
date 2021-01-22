@@ -1,6 +1,7 @@
 var canvas, ctx, HEIGHT, WIDTH, frames = 0, maxJumps = 3,
 ground = new Ground(),
 block = new Block();
+    obstacles = new Obstacles(),
 
 function main () {
     HEIGHT = window.innerHeight;
@@ -28,6 +29,7 @@ main();
 
 function click (event) {
     block.jump();
+        obstacles.clear();
 }
 
 function update () {
@@ -40,6 +42,8 @@ function draw () {
     ctx.fillStyle = "#50beff";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
+    else if (currentState == states.gamingState)
+        obstacles.drawing();
     ground.drawing();
     block.drawing();
 }
