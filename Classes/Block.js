@@ -9,6 +9,7 @@ class Block {
         this.velocity = 0;
         this.jumpForce = 23.6;
         this.jumpCounts = 0;
+        this.score = 0;
     }
 
     drawing () {
@@ -20,19 +21,27 @@ class Block {
         this.velocity += this.gravity;
         this.y += this.velocity;
 
-        if (this.y > ground.y - this.height){
+        if (this.y > ground.y - this.height && currentState != states.loseState){
            this.y = ground.y - this.height;
             this.velocity = 0; 
             this.jumpCounts = 0;   
-        }
-        
+        }        
     }
 
     jump () {
         if (this.jumpCounts < maxJumps){
             this.velocity = -this.jumpForce;
             this.jumpCounts++;
+        }        
+    }
+
+    reset () {
+        this.y = 0;
+        this.velocity = 0;
+        if (this.score > record){
+            localStorage.setItem("record", this.score)
+            record = this.score
         }
-        
+        this.score = 0;
     }
 }
